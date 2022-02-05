@@ -21,14 +21,31 @@ if (navigator.geolocation) {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
-        L.marker([latitude, longitude]).addTo(map)
-            .bindPopup('PDP AKADEMIYA')
+        let myIcon = L.icon({
+            iconUrl: "./location.png",
+            iconSize: [80, 100],
+            iconAnchor: [22, 94],
+            popupAnchor: [-3, -76],
+            shadowSize: [68, 95],
+            shadowAnchor: [22, 94]
+        });
+
+        L.marker([latitude, longitude], { icon: myIcon }).addTo(map)
+            .bindPopup(
+                L.popup({
+                    maxWidth: 250,
+                    minWidth: 40,
+                    autoClose: false,
+                    closeOnClick: false,
+                    className: "running-popup"
+                })
+            ).setPopupContent("PDP")
             .openPopup();
 
         map.on("click", function (e) {
             const { lat, lng } = e.latlng
 
-            L.marker([lat, lng]).addTo(map)
+            L.marker([lat, lng], { icon: myIcon }).addTo(map)
                 .bindPopup(
                     L.popup({
                         maxWidth: 250,
@@ -38,7 +55,7 @@ if (navigator.geolocation) {
                         className: "running-popup"
 
                     })
-                ).setPopupContent("12344788")
+                ).setPopupContent("Yugurish")
                 .openPopup();
         })
 
@@ -46,14 +63,3 @@ if (navigator.geolocation) {
 }
 
 
-let myIcon = L.icon({
-    iconUrl: 'my-icon.png',
-    iconSize: [38, 95],
-    iconAnchor: [22, 94],
-    popupAnchor: [-3, -76],
-    shadowUrl: 'my-icon-shadow.png',
-    shadowSize: [68, 95],
-    shadowAnchor: [22, 94]
-});
-
-L.marker([50.505, 30.57], { icon: myIcon }).addTo(map);
