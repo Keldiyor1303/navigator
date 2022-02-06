@@ -39,7 +39,7 @@ if (navigator.geolocation) {
                     closeOnClick: false,
                     className: "running-popup"
                 })
-            ).setPopupContent("PDP")
+            ).setPopupContent("Siz turgan joy")
             .openPopup();
 
         map.on("click", function (e) {
